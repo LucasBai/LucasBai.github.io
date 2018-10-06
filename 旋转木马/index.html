@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>旋转木马轮播图demo</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				font-family: "微软雅黑";
+				color: #666;
+			}
+			
+			ul {
+				list-style: none;
+			}
+			
+			img {
+				border: 0;
+				vertical-align: top;
+			}
+			
+			a {
+				cursor: pointer;
+				outline: none;
+				text-decoration: none;
+			}
+			
+			.wrap {
+				width: 1200px;
+				margin: 30px auto;
+			}
+			
+			.slide {
+				height: 500px;
+				position: relative;
+			}
+			
+			.slide li {
+				position: absolute;
+				left: 200px;
+				top: 0;
+			}
+			
+			.slide li img {
+				width: 100%;
+			}
+			
+			.arrow {
+				opacity: 0;
+			}
+			
+			.prev,
+			.next {
+				width: 76px;
+				height: 112px;
+				position: absolute;
+				top: 50%;
+				margin-top: -56px;
+				background: url(img/prev.png) no-repeat;
+				z-index: 99;
+			}
+			
+			.next {
+				right: 0;
+				background-image: url(img/next.png);
+			}
+		</style>
+		<script src="js/common.js"></script>
+		<script>
+			var config = [{
+					width: 400,
+					top: 20,
+					left: 50,
+					opacity: 0.2,
+					zIndex: 2
+				}, //0
+				{
+					width: 600,
+					top: 70,
+					left: 0,
+					opacity: 0.8,
+					zIndex: 3
+				}, //1
+				{
+					width: 800,
+					top: 100,
+					left: 200,
+					opacity: 1,
+					zIndex: 4
+				}, //2
+				{
+					width: 600,
+					top: 70,
+					left: 600,
+					opacity: 0.8,
+					zIndex: 3
+				}, //3
+				{
+					width: 400,
+					top: 20,
+					left: 750,
+					opacity: 0.2,
+					zIndex: 2
+				} //4
+			];
+			//页面加载的事件
+			window.onload = function() {
+//				var flag = true; //假设所有动画执行完毕了---锁
+				//获取所有li标签
+				var list = my$("slide").getElementsByTagName("li");
+				//图片散开
+				function assign(){
+					for(var i = 0; i < list.length; i++) {
+						//设置每个li，都要把宽、层级、透明度、left、top到达指定的目标位置
+						animate(list[i], config[i]);
+//						animate(list[i], config[i],function(){
+//							flag = true; //所有属性都到达目标后解锁
+//						});
+					}					
+				}
+				assign();
+				//右边按钮
+				my$("arrRight").onclick = function(){
+					config.push(config.shift()); //把数组第一个删除，追加到最后一个位置
+						assign(); //重新分配
+//					if(flag){
+//						flag = false; //点击按钮之后再点不会加速
+//						config.push(config.shift()); //把数组第一个删除，追加到最后一个位置
+//						assign(); //重新分配
+//					}
+				};
+				//左边按钮
+				my$("arrLeft").onclick = function(){
+					config.unshift(config.pop()); //把数组最后一个删除，追加到第一个位置
+					assign(); //重新分配
+				};
+				//鼠标进入
+				my$("slide").onmouseover = function(){
+					animate(my$("arrow"),{"opacity":1});
+				};
+				//鼠标离开
+				my$("slide").onmouseout = function(){
+					animate(my$("arrow"),{"opacity":0});
+				};
+			};
+		</script>
+	</head>
+
+	<body>
+		<div class="wrap" id="wrap">
+			<div class="slide" id="slide">
+				<ul>
+					<li>
+						<a href="#"><img src="img/slidepic1.jpg" /></a>
+					</li>
+					<li>
+						<a href="#"><img src="img/slidepic2.jpg" /></a>
+					</li>
+					<li>
+						<a href="#"><img src="img/slidepic3.jpg" /></a>
+					</li>
+					<li>
+						<a href="#"><img src="img/slidepic4.jpg" /></a>
+					</li>
+					<li>
+						<a href="#"><img src="img/slidepic5.jpg" /></a>
+					</li>
+				</ul>
+				<div class="arrow" id="arrow">
+					<a href="javascript:;" class="prev" id="arrLeft"></a>
+					<a href="javascript:;" class="next" id="arrRight"></a>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

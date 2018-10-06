@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>京东轮播图demo</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul{
+				list-style: none;
+			}
+			body{
+				background-color: rgba(255,0,30);
+			}
+			.slider{
+				width: 790px;
+				height: 340px;
+				margin: 100px auto;
+				position: relative;
+				border: 2px solid #ccc;
+			}
+			.slider li{
+				position: absolute;
+				display: none;
+			}
+			.slider li:first-child{
+				display: block;
+			}
+			.arrow-left,.arrow-right{
+				width: 30px;
+				height: 60px;
+				background-color: rgb(0,0,0,0.2);
+				position: absolute;
+				cursor: pointer;
+				top: 50%;
+				margin-top: -30px;
+				line-height: 60px;
+				text-align: center;
+				color: #fff;
+				font-size: 30px;
+				font-weight: 700;
+				font-family: simhei;
+			}
+			.arrow-left:hover,.arrow-right:hover{
+				background-color: rgba(0,0,0,0.5);
+			}
+			.arrow-left{
+				left: 0;
+			}
+			.arrow-right{
+				right: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="slider">
+			<ul>
+				<li><a href="#"><img src="img/1.jpg"/></a></li>
+				<li><a href="#"><img src="img/2.jpg"/></a></li>
+				<li><a href="#"><img src="img/3.jpg"/></a></li>
+				<li><a href="#"><img src="img/4.jpg"/></a></li>
+				<li><a href="#"><img src="img/5.jpg"/></a></li>
+				<li><a href="#"><img src="img/6.jpg"/></a></li>
+				<li><a href="#"><img src="img/7.jpg"/></a></li>
+				<li><a href="#"><img src="img/8.jpg"/></a></li>
+			</ul>
+			<!--箭头-->
+			<div class="arrow">
+				<span class="arrow-left">&lt;</span>
+				<span class="arrow-right">&gt;</span>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery-1.12.4.js" ></script>
+		<script>
+			$(function(){
+				//获取所有li的总长度
+				var liLength = $(".slider li").length;
+				//右箭头注册点击事件
+				var count = 0;
+				$(".arrow-right").click(function(){
+					count++;
+					if(count == liLength){
+						//当到最后一张时，再次点击，回到第一张
+						count = 0;
+					}
+					//让count渐渐的显示，其他的兄弟渐渐的隐藏
+					$(".slider li").eq(count).fadeIn().siblings().fadeOut();
+				});
+				//左箭头注册点击事件
+				$(".arrow-left").click(function(){
+					count--;
+					if(count == -1){
+						//当到第一张时，再次点击，回到最后一张
+						count = liLength-1;
+					}
+					$(".slider li").eq(count).fadeIn().siblings().fadeOut();
+				});
+			});
+		</script>
+	</body>
+</html>

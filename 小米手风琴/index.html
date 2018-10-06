@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>小米手风琴特效demo</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background-color: coral
+			}
+			ul{
+				list-style: none;
+				cursor: pointer;
+			}
+			div{
+				width: 1200px;
+				height: 400px;
+				margin: 100px auto;
+				border: 1px solid red;
+				overflow: hidden;
+			}
+			div li{
+				width: 240px;
+				height: 400px;
+				float: left;
+			}
+			div ul{
+				width: 1300px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<script type="text/javascript" src="js/jquery-1.12.4.js" ></script>
+		<script>
+			$(function(){
+				//获取所有li
+				var $li = $("#box li");
+				//为每一个li添加图片背景
+				for (var i = 0;i < $li.length; i++) {
+					$li.eq(i).css("background-image","url(img/mi0" + (i + 1) + ".jpg)");
+				}
+				$li.mouseenter(function(){
+					$(this).stop().animate({width:920}).siblings().stop().animate({width:70});
+				});
+				$li.mouseleave(function(){
+					$li.stop().animate({width:240});
+				});
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>音乐导航demo</title>
+		
+		
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background-color: beige;
+			}
+			ul{
+				list-style: none;
+			}
+			.nav{
+				width: 900px;
+				height: 60px;
+				background-color: brown;
+				margin: 0 auto;
+			}
+			.nav li{
+				width: 100px;
+				height: 60px;
+				float: left;
+				position: relative;
+				overflow: hidden;
+			}
+			.nav a{
+				text-decoration: none;
+				width: 100%;
+				height: 100%;
+				font-size: 24px;
+				text-align: center;
+				color: #FFFFFF;
+				line-height: 60px;
+				position: absolute;
+				z-index: 2;
+			}
+			.nav span{
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 60px;
+				background-color: darkorange;
+			}
+			.explain{
+				font-size: 20px;
+				font-family: "微软雅黑";
+				margin: 100px;
+				letter-spacing: 3px;
+				line-height: 40px;
+				position: absolute;
+			}
+			.explain em{
+				cursor: pointer;
+			}
+			.explain p{
+				color: #A52A2A;
+				display: none;
+			}
+			.musicScore{
+				font-size: 20px;
+				font-family: "微软雅黑";
+				margin-left: 1000px;
+				margin-top: 110px;
+				letter-spacing: 3px;
+				line-height: 30px;
+				position: absolute;
+			}
+			.musicScore em{
+				cursor: pointer;
+			}
+			.musicScore p{
+				color: #A52A2A;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="nav">
+		<!--音频标签-->
+		<audio src="mp3/1.ogg"></audio>
+		<audio src="mp3/2.ogg"></audio>
+		<audio src="mp3/3.ogg"></audio>
+		<audio src="mp3/4.ogg"></audio>
+		<audio src="mp3/5.ogg"></audio>
+		<audio src="mp3/6.ogg"></audio>
+		<audio src="mp3/7.ogg"></audio>
+		<audio src="mp3/8.ogg"></audio>
+		<audio src="mp3/9.ogg"></audio>
+			<ul>
+				<li><a href="javascript:void(0)">♪do</a><span></span></li>
+				<li><a href="javascript:void(0)">♪re</a><span></span></li>
+				<li><a href="javascript:void(0)">♪mi</a><span></span></li>
+				<li><a href="javascript:void(0)">♪fa</a><span></span></li>
+				<li><a href="javascript:void(0)">♪so</a><span></span></li>
+				<li><a href="javascript:void(0)">♪la</a><span></span></li>
+				<li><a href="javascript:void(0)">♪si</a><span></span></li>
+				<li><a href="javascript:void(0)">♪do'</a><span></span></li>
+				<li><a href="javascript:void(0)">♪re'</a><span></span></li>
+			</ul>
+		</div>
+		<div class="explain">
+			<em>使用说明 (ｷ｀ﾟДﾟ´)!!</em>
+			<p>单击页面后鼠标滑过导航栏</p>
+			<p>您还可以按下键盘1-9来控制音符</p>
+			<p>玩的愉快 o(*￣︶￣*)</p>
+		</div>
+		<div class="musicScore">
+			<em>乐谱(〃'▽'〃)!!</em>
+			<p>小星星</p>
+			<p>1 1 5 5 6 6 5</p>
+			<p>一闪一闪亮晶晶</p>
+			<p>4 4 3 3 2 2 1</p>
+			<p>满天都是小星星</p>
+			<p>5 5 4 4 3 3 2</p>
+			<p>挂在天上放光明</p>
+			<p>5 5 4 4 3 3 2</p>
+			<p>它是我的小眼睛</p>
+			<p>1 1 5 5 6 6 5</p>
+			<p>一闪一闪亮晶晶</p>
+			<p>4 4 3 3 2 2 1</p>
+			<p>满天都是小星星</p>
+		</div>
+		<script type="text/javascript" src="js/jquery-1.12.4.js" ></script>
+		<script>
+			$(function(){
+				$(".nav li").mouseenter(function(){
+					//让当前li下的span的top变为0
+					$(this).children("span").stop().animate({top:0});
+					//让对应的音乐播放，用get方法，因为jQuery中没有对audio封装，jq对象转换为dom对象后用dom的方法即可
+					$("audio").get($(this).index()).load();
+					$("audio").get($(this).index()).play();
+				}).mouseleave(function(){
+					//让当前li下的span的top变为60
+					$(this).children("span").stop().animate({top:60});
+				});
+				
+				//节流阀：按下的时候触发，如果没弹起不触发下一次
+				var flag = true;
+				
+				//新增功能：点击1-9数字键，能触发对应的事件（按下触发mouseenter，弹起触发mouseleave）
+				$(document).on("keydown",function(e){
+					if(flag){
+						//关闭节流阀
+						flag = false;
+						//获取按下的键（49-57）
+						var code = e.keyCode;
+						if(code >= 49 && code <= 57){
+							//触发对应li的mouseenter事件
+							$(".nav li").eq(code - 49).trigger("mouseenter");
+						}						
+					}
+				});
+				$(document).on("keyup",function(e){
+					//打开节流阀
+					flag = true;
+					//获取按下的键（49-57）
+					var code = e.keyCode;
+					if(code >= 49 && code <= 57){
+						//触发对应li的mouseenter事件
+						$(".nav li").eq(code - 49).trigger("mouseleave");
+					}
+				});
+				
+				//使用说明，点击显示，再次点击隐藏
+				$(".explain em").on("click",function(){
+					$(".explain p").stop().fadeToggle(500);
+				});
+				
+				//乐谱，点击显示，再次点击隐藏
+				$(".musicScore em").on("click",function(){
+					$(".musicScore p").stop().slideToggle(500);
+				});
+			});
+		</script>
+	</body>
+</html>
