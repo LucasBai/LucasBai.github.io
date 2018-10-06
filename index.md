@@ -5,26 +5,26 @@
 1 [贪吃蛇小游戏](https://lucasbai.github.io/贪吃蛇)
 _基于原生JavaScript而创建出的小游戏，童年回忆_
 
-2 放大镜效果  https://lucasbai.github.io/放大镜效果
--京东访问商品放大功能-
+2 [放大镜效果](https://lucasbai.github.io/放大镜效果)
+_京东访问商品放大功能_
 
-3 滚动轮播图  https://lucasbai.github.io/滚动轮播图
--淘宝的滚动式轮播图，难度最大的轮播图之一-
+3 [滚动轮播图](https://lucasbai.github.io/滚动轮播图)
+_淘宝的滚动式轮播图，难度最大的轮播图之一_
 
-4 小米手风琴  https://lucasbai.github.io/小米手风琴
--小米广告的手风琴特效-
+4 [小米手风琴](https://lucasbai.github.io/小米手风琴)
+_小米广告的手风琴特效_
 
-5 旋转木马  https://lucasbai.github.io/旋转木马
--非常炫酷的一种页面展示效果，快来试一试~-
+5 [旋转木马](https://lucasbai.github.io/旋转木马)
+_非常炫酷的一种页面展示效果，快来试一试~_
 
-6 京东呼吸灯  https://lucasbai.github.io/京东呼吸灯
--京东的渐变效果轮播图，另一种不同的风格呢-
+6 [京东呼吸灯](https://lucasbai.github.io/京东呼吸灯)
+_京东的渐变效果轮播图，另一种不同的风格呢_
 
-7 钢琴导航  https://lucasbai.github.io/钢琴导航
--十分好玩的钢琴效果，快来试一试（彩蛋：还有乐谱哦）-
+7 [钢琴导航](https://lucasbai.github.io/钢琴导航)
+_十分好玩的钢琴效果，快来试一试（彩蛋：还有乐谱哦）_
 
-8 弹幕效果  https://lucasbai.github.io/弹幕效果
--视频简直毫无节操，所以，尽情发弹幕来宣泄你的心情吧！-
+8 [弹幕效果](https://lucasbai.github.io/弹幕效果)
+_视频简直毫无节操，所以，尽情发弹幕来宣泄你的心情吧！_
 
 
 
