@@ -2,7 +2,7 @@
 ##我的项目：
 您可以点击地址来访问我的项目，博主目前正在学习搭建博客来展示，嘿嘿~
 
-1.贪吃蛇小游戏  [https://lucasbai.github.io/贪吃蛇]
+1.贪吃蛇小游戏  [ https://lucasbai.github.io/贪吃蛇 ]
 _基于原生JavaScript而创建出的小游戏，童年回忆_
 
 2.放大镜效果  https://lucasbai.github.io/放大镜效果
